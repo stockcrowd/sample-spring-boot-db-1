@@ -1,0 +1,77 @@
+body {
+  background-color: #F6F6F6;
+  font-family: sans-serif;
+  line-height: 20px;
+  margin: 20px;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 40px;
+}
+
+td, th {
+  vertical-align: top;
+  text-align: left;
+}
+
+@media screen and (min-width: 801px) {
+/* wide screens */
+  
+  table { 
+    background-color: white;
+    border-collapse: collapse; 
+  }
+  
+  td, th {
+    padding: 10px;
+    border-top: 1px #CCC solid;
+    border-bottom: 1px #CCC solid;
+  }
+  
+}
+
+@media screen and (max-width: 800px) {
+/* narrow screens */
+  body {
+    margin: 10px;
+  }
+  
+  /* hide headings */
+  thead {
+    display: none;
+  }
+  
+  tr {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: white;
+    padding: 6px;
+    border: 1px #CCCCCC solid; 
+    margin-bottom: 20px;
+  }
+
+  td {
+    padding: 8px;
+    border-bottom: 1px #CCC solid;
+  }
+  
+  td.name {
+    order: 1;
+    grid-column: 1 / span 2;
+  }
+  
+  td.no{
+    order: 3;
+    grid-column: 2;
+  }
+
+  /* Add labels */
+  td::before {
+    content: attr(data-label) "\A"; /* label + newline */
+    white-space: pre; /* makes newline work */
+    font-size: 12px;
+    color: #888888;
+    text-transform: uppercase;
+  }
+
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Table V05</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body ng-app="myApp" ng-controller="pfpCtrl">
+	
+	<h2>PLATAFORMAS DE FINANCIACIÓN PARTICIPATIVA</h2>
+	<h4>SERVICIO REST: <a ng-href="/pfp" style="background: yellow; padding:5px 10px;" target="_blank">/pfp</a></h4>
+
+	<table class="preview">
+	  <thead>
+	  <tr>
+		<th>Denominación Social</th>
+		<th>No. Registro Oficial</th>
+		<th>Fecha de Registro</th>
+		<th>Página Web</th>
+	  </tr>
+	  </thead>
+	  <tr ng-repeat="pfp in pfps | orderBy:'registerNumber'">
+		<td class="name">{{ pfp.name }}</td>
+		<td class="no">{{ pfp.registerNumber }}</td>
+		<td>{{ pfp.registerDate }}</td>
+		<td><a ng-href="{{'http://' + pfp.webpage}}" target="_blank">{{ pfp.webpage }}</a></td>
+
+	  </tr>
+	  
+    
+	  
+	<script>
+	var app = angular.module('myApp', []);
+	app.controller('pfpCtrl', function($scope, $http) {
+	    $http.get("/pfp")
+	    .then(function (response) {$scope.pfps = response.data;});
+	});
+	</script>
+
+</table>
+
+
+
+</body>
+</html>
